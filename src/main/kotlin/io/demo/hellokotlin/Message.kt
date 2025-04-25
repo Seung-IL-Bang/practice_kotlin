@@ -1,6 +1,10 @@
 package io.demo.hellokotlin
 
-data class Message(val id: String?, val text: String)
+import org.springframework.data.annotation.Id
+import org.springframework.data.relational.core.mapping.Table
+
+@Table("MESSAGES")
+data class Message(val text: String, @Id val id: String? = null)
 
 /**
  * Message class will be used for data transfer: a list of serialized Message objects will make up the JSON document that the controller is going to respond to the browser request.

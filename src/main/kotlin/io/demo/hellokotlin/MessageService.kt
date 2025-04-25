@@ -1,17 +1,14 @@
 package io.demo.hellokotlin
 
-import org.springframework.jdbc.core.JdbcTemplate
+import org.springframework.data.repository.findByIdOrNull
 import org.springframework.stereotype.Service
 
 @Service
-class MessageService(private val db: JdbcTemplate) {
+class MessageService(private val db: MessageRepository) {
 
-    fun findMessages(): List<Message> = db.query("select * from messages") { rs, _ ->
-        Message(rs.getString("id"), rs.getString("text"))
-    }
+    fun findMessages(): List<Message> = db.findAll().toList()
 
-    fun save(message: Message): Message {
-        db.update("insert into messages values (?, ?)", message.id, message.text)
-        return message;
-    }
+    fun findMessageById(id: String): Message? = db.findByIdOrNull(id)
+
+    fun save(message: Message): Message = db.save(message)
 }
