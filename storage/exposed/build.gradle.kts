@@ -17,3 +17,8 @@ dependencies {
 }
 
 // https://github.com/JetBrains/Exposed?tab=readme-ov-file
+
+/**
+ * implementation: 의존성이 구현에만 사용되고, 이 모듈을 사용하는 다른 모듈로 의존성이 전파되지 않습니다.
+ * api: 의존성이 모듈의 공개 API의 일부로 간주되어, 이 모듈을 사용하는 다른 모듈로 의존성이 전파됩니다.
+ */
